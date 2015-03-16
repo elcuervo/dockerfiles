@@ -7,7 +7,6 @@ ADD haproxy.cfg /etc/haproxy/haproxy.cfg
 ADD start-supervisord.sh /start-supervisord.sh
 
 RUN chmod 755 /*.sh
-RUN rm -rf /var/cache/apk/*
 
 EXPOSE 80
 CMD ["/start-supervisord.sh"]
