@@ -1,4 +1,4 @@
-export NAME=haproxy-supervisord
+export NAME=serf-agent-haproxy
 
 build: Dockerfile
 	docker build -t ${NAME} .
