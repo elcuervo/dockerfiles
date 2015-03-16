@@ -1,8 +1,13 @@
+export NAME=haproxy-supervisord
+
 build: Dockerfile
-	docker build -t haproxy-supervisord .
+	docker build -t ${NAME} .
 
 clean:
-	docker rmi -f haproxy-supervisord
+	docker rmi -f ${NAME}
 
 tag:
-	docker tag haproxy-supervisord elcuervo/haproxy-supervisord
+	docker tag ${NAME} elcuervo/${NAME}
+
+release:
+	docker push elcuervo/${NAME}
