@@ -1,4 +1,4 @@
-export NAME=serf-supervisord
+export NAME=serf-agent-supervisord
 
 build: Dockerfile
 	docker build -t ${NAME} .
