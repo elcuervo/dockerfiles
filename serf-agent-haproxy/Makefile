@@ -7,7 +7,7 @@ clean:
 	docker rmi -f ${NAME}
 
 tag:
-	docker tag ${NAME} elcuervo/${NAME}
+	docker tag -f ${NAME} elcuervo/${NAME}
 
 release:
 	docker push elcuervo/${NAME}

@@ -14,4 +14,6 @@ ADD start-supervisord.sh /start-supervisord.sh
 
 RUN chmod 755 /*.sh
 
+EXPOSE 7946 7373
+
 CMD ["/start-supervisord.sh"]
