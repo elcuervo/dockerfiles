@@ -1,0 +1,9 @@
+{
+  "tags": {
+    "role": "load-balancer"
+  },
+  "event_handlers": [
+    "member-join=/load-balancer-member-join.sh",
+    "member-leave,member-failed=/load-balancer-member-leave.sh"
+  ]
+}
