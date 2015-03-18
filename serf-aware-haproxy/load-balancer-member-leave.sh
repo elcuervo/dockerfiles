@@ -1,13 +1,18 @@
 #!/usr/bin/env sh
 
-if [ "x${SERF_SELF_ROLE}" != "xlb" ]; then
-    echo "Not an lb. Ignoring member leave"
-    exit 0
+if [ "${SERF_SELF_ROLE}" != "load-balancer" ]; then
+  echo "Not a load-balancer. Ignoring member join."
+  exit 0
 fi
 
+[ -z "$UPDATE_ROLE" ] && UPDATE_ROLE="web-node"
+
 while read line; do
+  ROLE=$(echo $line | awk '{print $3 }')
+  if [[ $ROLE == $UPDATE_ROLE ]]; then
     NAME=$(echo $line | awk '{print $1 }')
     sed -i'' "/${NAME} /d" /etc/haproxy/haproxy.cfg
+  fi
 done
 
 supervisorctl reload haproxy
