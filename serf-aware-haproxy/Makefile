@@ -9,5 +9,11 @@ clean:
 tag:
 	docker tag -f ${NAME} elcuervo/${NAME}
 
+shell:
+	docker run -ti ${NAME} sh
+
+run:
+	docker run -ti ${NAME}
+
 release:
 	docker push elcuervo/${NAME}
