@@ -12,7 +12,7 @@ while read line; do
   if [[ $ROLE == $UPDATE_ROLE ]]; then
     NAME=$(echo $line | awk '{print $1 }')
     sed -i'' "/${NAME} /d" /etc/haproxy/haproxy.cfg
+
+    supervisorctl reload haproxy
   fi
 done
-
-supervisorctl reload haproxy

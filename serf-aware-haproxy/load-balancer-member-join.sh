@@ -11,7 +11,8 @@ while read line; do
   ROLE=$(echo $line | awk '{print $3 }')
   if [[ $ROLE == $UPDATE_ROLE ]]; then
     echo $line | awk '{ printf "    server %s %s check\n", $1, $2 }' >> /etc/haproxy/haproxy.cfg
+
+    supervisorctl reload haproxy
   fi
 done
 
-supervisorctl reload haproxy
