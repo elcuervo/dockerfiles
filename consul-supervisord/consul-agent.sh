@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 
 export GOMAXPROCS=$(nproc)
-consul agent -server -bootstrap-expect ${CONSUL_BOOTSTRAP_EXPECT} -config-dir /etc/consul/consul.d -data-dir /tmp/consul
+FLAGS="-config-dir /etc/consul/consul.d -data-dir /tmp/consul"
+
+if [[ $CONSUL_CLIENT == false ]]; then
+  FLAGS="$FLAGS -bootstrap-expect ${CONSUL_BOOTSTRAP_EXPECT:-1}"
+fi
+
+consul agent -server $FLAGS
