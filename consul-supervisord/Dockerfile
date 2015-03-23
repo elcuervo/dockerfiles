@@ -2,7 +2,7 @@ FROM       ubuntu
 MAINTAINER elcuervo <elcuervo@elcuervo.net>
 
 ENV CONSUL_VERSION 0.5.0
-ENV CONSUL_EXPECT_BOOTSTRAP 1
+ENV CONSUL_BOOTSTRAP_EXPECT 1
 
 RUN apt-get update && apt-get -qy upgrade
 RUN apt-get -qy install supervisor unzip wget
