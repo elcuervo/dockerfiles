@@ -8,9 +8,10 @@ RUN wget --quiet "https://github.com/hashicorp/consul-template/releases/download
 RUN tar xfz consul_template.tgz --strip=1 && rm consul_template.tgz && mv consul-template /usr/sbin
 
 RUN mkdir -p /etc/consul-template/templates
+RUN mkdir -p /etc/consul-template/conf.d
 
 ADD consul-template-loader.sh /usr/sbin/consul-template-loader
-ADD consul-base.hcl /etc/consul-template/templates/base.hcl
+ADD consul-base.hcl /etc/consul-template/conf.d/base.hcl
 ADD supervisord-consul-template.conf /etc/supervisor/conf.d/consul-template.conf
 
 RUN chmod 755 /usr/sbin/*
