@@ -11,10 +11,11 @@ RUN unzip consul.zip && rm consul.zip && mv consul /usr/sbin/
 RUN mkdir -p /etc/consul/consul.d/
 
 ADD supervisord-consul.conf /etc/supervisor/conf.d/consul.conf
-ADD start-supervisord.sh /start-supervisord.sh
+ADD start-supervisord.sh /usr/sbin/start-supervisord
+ADD consul-agent.sh /usr/sbin/consul-agent
 
-RUN chmod 755 /*.sh
+RUN chmod 755 /usr/sbin/*
 
 EXPOSE 8300 8301 8301/udp 8302 8302/udp 8400 8500 53/udp
 
-CMD ["/start-supervisord.sh"]
+CMD ["start-supervisord"]
