@@ -1,0 +1,7 @@
+{
+  "service": {
+    "name": "ruby-webapp",
+    "tags": ["ruby"],
+    "port": 80
+  }
+}
