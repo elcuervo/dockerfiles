@@ -22,5 +22,3 @@ RUN apt-get update \
 RUN echo 'gem: --no-rdoc --no-ri' >> "$HOME/.gemrc"
 
 ADD consul-ruby.json  /etc/consul/consul.d/ruby-webapp.json
-
-RUN chmod 755 /usr/sbin/*
