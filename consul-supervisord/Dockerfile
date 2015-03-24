@@ -2,7 +2,7 @@ FROM       ubuntu
 MAINTAINER elcuervo <elcuervo@elcuervo.net>
 
 ENV CONSUL_VERSION          0.5.0
-ENV CONSUL_CLIENT           false
+ENV CONSUL_SERVER           false
 ENV CONSUL_BOOTSTRAP_EXPECT 1
 ENV CONSUL_HOST             127.0.0.1
 
