@@ -1,19 +1,34 @@
 global
+    {{if key "service/haproxy/maxconn"}}
     maxconn {{key "service/haproxy/maxconn"}}
+    {{else}}
+    maxconn 1024
+    {{end}}
     user haproxy
     group haproxy
     pidfile /var/run/haproxy.pid
 
 defaults
+    {{if key "service/haproxy/mode"}}
     mode {{key "service/haproxy/mode"}}
+    {{else}}
+    mode http
+    {{end}}
+
+    {{if key "service/haproxy/timeouts"}}
     {{range ls "service/haproxy/timeouts"}}
     timeout {{.Key}} {{.Value}}
+    {{end}}
+    {{else}}
+    timeout connect 5000
+    timeout client  50000
+    timeout server  50000
     {{end}}
 
 listen http-in
     bind *:80
     option forwardfor
     balance roundrobin
-    {{range service "release.webapp"}}
+    {{range service "webapp"}}
     server {{.Node}} {{.Address}}:{{.Port}}
     {{end}}
