@@ -6,13 +6,15 @@ global
 
 defaults
     mode http
-    timeout client 5000
-    timeout client 50000
+    timeout client  5000
+    timeout connect 5000
+    timeout server  50000
 
-listen http-in
-    bind *:80
+listen http-in 0.0.0.0:80
+    stats enable
+    stats uri /haproxy?stats
     option forwardfor
     balance roundrobin
     {{range service "webapp"}}
-    server {{.Node}} {{.Address}}:{{.Port}}
+    server {{.Node}} {{.Address}}:{{.Port}} check
     {{end}}
