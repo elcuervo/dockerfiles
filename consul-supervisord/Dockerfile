@@ -13,6 +13,7 @@ RUN wget --quiet "https://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_linu
 RUN unzip consul.zip && rm consul.zip && mv consul /usr/sbin/
 RUN mkdir -p /etc/consul/consul.d/
 
+ADD consul-base.json             /etc/consul/consul.d/base.json
 ADD supervisord-consul.conf      /etc/supervisor/conf.d/consul.conf
 ADD supervisord-consul-join.conf /etc/supervisor/conf.d/consul-join.conf
 
